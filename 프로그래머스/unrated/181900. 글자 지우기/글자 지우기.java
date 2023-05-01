@@ -1,21 +1,17 @@
 class Solution {
     public String solution(String my_string, int[] indices) {
+        char[] chs = my_string.toCharArray();
+
+        for(int i : indices) {
+            chs[i] = '1';
+        }
+
         StringBuffer answer = new StringBuffer();
-        for (int i = 0; i < my_string.length(); i++) {
-            if (contains(indices, i)) {
-                continue;
+        for(int i = 0; i < chs.length; i++) {
+            if(chs[i] != '1') {
+                answer.append(chs[i]);
             }
-            answer.append(my_string.charAt(i));
         }
         return answer.toString();
-    }
-
-    private static boolean contains(int[] arr, int target) {
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == target) {
-                return true;
-            }
-        }
-        return false;
     }
 }
