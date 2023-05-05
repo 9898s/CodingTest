@@ -3,13 +3,9 @@ class Solution {
         long answer = 0;
         
         if(a < b) {
-            for(int i = a; i <= b; i++) {
-                answer += i;
-            }
+            answer = (long)(a + b) * (b - a + 1) / 2;
         } else {
-            for(int i = b; i <= a; i++) {
-                answer += i;
-            }
+            answer = (long)(a + b) * (a - b + 1) / 2;
         }
         return answer;
     }
