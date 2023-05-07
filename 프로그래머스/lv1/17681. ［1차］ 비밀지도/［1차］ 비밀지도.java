@@ -3,25 +3,11 @@ class Solution {
         String[] answer = new String[n];
 
         for (int i = 0; i < n; i++) {
-            StringBuffer sb1 = new StringBuffer(Integer.toString(arr1[i], 2));
-            if(sb1.length() < n) {
-                sb1.insert(0, "0".repeat(n - sb1.length()));
+            StringBuffer sb = new StringBuffer(Integer.toBinaryString(arr1[i] | arr2[i]));
+            if(sb.length() < n) {
+                sb.insert(0, "0".repeat(n - sb.length()));
             }
-
-            StringBuffer sb2 = new StringBuffer(Integer.toString(arr2[i], 2));
-            if(sb2.length() < n) {
-                sb2.insert(0, "0".repeat(n - sb2.length()));
-            }
-
-            StringBuffer sb3 = new StringBuffer();
-            for (int j = 0; j < n; j++) {
-                if(sb1.charAt(j) == '1' || sb2.charAt(j) == '1') {
-                    sb3.append("#");
-                } else {
-                    sb3.append(' ');
-                }
-            }
-            answer[i] = sb3.toString();
+            answer[i] = sb.toString().replace("1", "#").replace("0", " ");
         }
         return answer;
     }
