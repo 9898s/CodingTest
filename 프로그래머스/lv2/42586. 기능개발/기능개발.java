@@ -1,39 +1,33 @@
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
-        Stack<Integer> stack = new Stack<>();
+        Queue<Integer> queue = new LinkedList<>();
+        ArrayList<Integer> list = new ArrayList<>();
 
-        int size = 0;
         for (int i = 0; i < progresses.length; i++) {
-            int num = 0;
             if ((100 - progresses[i]) % speeds[i] == 0) {
-                num = (100 - progresses[i]) / speeds[i];
+                queue.add((100 - progresses[i]) / speeds[i]);
             } else {
-                num = (100 - progresses[i]) / speeds[i] + 1;
-            }
-
-            if (!stack.isEmpty() && stack.peek() >= num) {
-                stack.add(stack.peek());
-            } else {
-                stack.add(num);
-                size++;
+                queue.add((100 - progresses[i]) / speeds[i] + 1);
             }
         }
 
-        int idx = 0;
-        int[] answer = new int[size];
-        for (int i = 0; i < answer.length; i++) {
-            answer[i] = 1;
-        }
+        System.out.println(queue);
 
-        for (int i = 0; i < stack.size() - 1; i++) {
-            if (stack.get(i) == stack.get(i + 1)) {
-                answer[idx]++;
-            } else {
-                idx++;
+        while (!queue.isEmpty()) {
+            int day = queue.remove();
+            int count = 1;
+
+            while (!queue.isEmpty() && day >= queue.peek()) {
+                queue.remove();
+                count++;
             }
+            list.add(count);
         }
+        int[] answer = list.stream().mapToInt(i -> i).toArray();
         return answer;
     }
 }
