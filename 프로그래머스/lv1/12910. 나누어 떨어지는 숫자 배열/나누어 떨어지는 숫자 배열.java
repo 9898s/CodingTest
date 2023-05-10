@@ -1,19 +1,21 @@
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.Collections;
 
 class Solution {
     public int[] solution(int[] arr, int divisor) {
-        TreeSet<Integer> set = new TreeSet<>();
-        for(int item : arr) {
-            if(item % divisor == 0) {
-                set.add(item);
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] % divisor == 0) {
+                list.add(arr[i]);
             }
         }
+        Collections.sort(list);
         
-        if(set.size() == 0) {
-            set.add(-1);
+        if(list.size() == 0) {
+            list.add(-1);
         }
         
-        int[] answer = set.stream().mapToInt(i -> i).toArray();
+        int[] answer = list.stream().mapToInt(i -> i).toArray();
         return answer;
     }
 }
