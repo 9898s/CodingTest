@@ -1,27 +1,27 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 
 class Solution {
     public int[] solution(int[] lottos, int[] win_nums) {
-        ArrayList<Integer> al = new ArrayList<>();
-        for (int item : lottos) {
-            al.add(item);
-        }
+        int zero = 0;
+        HashMap<Integer, Boolean> hm = new HashMap<>();
 
-        int count = 0;
-        for (int i = 0; i < win_nums.length; i++) {
-            if (al.contains(win_nums[i])) {
-                count++;
-            }
-        }
-
-        int bonus = 0;
         for (int item : lottos) {
             if (item == 0) {
-                bonus++;
+                zero++;
+                continue;
+            }
+
+            hm.put(item, true);
+        }
+
+        int win = 0;
+        for (int item : win_nums) {
+            if (hm.containsKey(item)) {
+                win++;
             }
         }
 
-        int[] answer = {getRank(count + bonus), getRank(count)};
+        int[] answer = {getRank(zero + win), getRank(win)};
         return answer;
     }
     
