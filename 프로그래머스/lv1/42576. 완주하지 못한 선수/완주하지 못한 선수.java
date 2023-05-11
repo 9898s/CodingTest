@@ -9,9 +9,7 @@ class Solution {
         }
 
         for (String str : completion) {
-            if (hm.containsKey(str)) {
-                hm.put(str, hm.get(str) - 1);
-            }
+            hm.put(str, hm.get(str) - 1);
         }
 
         String answer = "";
