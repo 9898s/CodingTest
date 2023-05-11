@@ -14,7 +14,7 @@ class Solution {
     public static int divisor(int number) {
         int result = 0;
         for (int i = 1; i <= Math.sqrt(number); i++) {
-            if (number / i == i && number % i == 0) {
+            if (i * i == number) {
                 result++;
             } else if (number % i == 0) {
                 result += 2;
