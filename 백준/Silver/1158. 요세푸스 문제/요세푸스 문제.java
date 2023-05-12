@@ -7,37 +7,20 @@ public class Main {
         int N = sc.nextInt();
         int K = sc.nextInt();
 
-        int[][] arr = new int[N][2];
-        for (int i = 0; i < N; i++) {
-            arr[i][0] = i + 1;
-        }
-
-        int idx = 0;
-        int count = K;
         LinkedList<Integer> list = new LinkedList<>();
-
-        while (list.size() != N) {
-            if (arr[idx][1] == 0) {
-                count--;
-            }
-
-            if (count == 0) {
-                list.add(arr[idx][0]);
-                arr[idx][1] = 1;
-                count = K;
-            }
-
-            idx++;
-            if (idx >= N) {
-                idx = 0;
-            }
+        for (int i = 1; i <= N; i++) {
+            list.add(i);
         }
 
-        System.out.print("<");
-        for (int i = 0; i < list.size() - 1; i++) {
-            System.out.printf("%d, ", list.get(i));
+        StringBuffer sb = new StringBuffer("<");
+        
+        int idx = 0;
+        while (!list.isEmpty()) {
+            idx = (idx + (K - 1)) % list.size();
+            sb.append(list.remove(idx) + ", ");
         }
-        System.out.printf("%d", list.getLast());
-        System.out.print(">");
+
+        sb.delete(sb.length() - 2, sb.length()).append(">");
+        System.out.println(sb);
     }
 }
