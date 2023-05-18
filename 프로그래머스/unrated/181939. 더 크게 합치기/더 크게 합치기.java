@@ -1,12 +1,9 @@
 class Solution {
     public int solution(int a, int b) {
-        StringBuilder x = new StringBuilder();
-        StringBuilder y = new StringBuilder();
-        
-        x.append(a).append(b);
-        y.append(b).append(a);
+        String x = String.valueOf(a) + b;
+        String y = String.valueOf(b) + a;
 
-        int answer = Integer.parseInt(x.toString()) > Integer.parseInt(y.toString()) ? Integer.parseInt(x.toString()) : Integer.parseInt(y.toString());
+        int answer = Integer.parseInt(x) > Integer.parseInt(y) ? Integer.parseInt(x) : Integer.parseInt(y);
         return answer;
     }
 }
