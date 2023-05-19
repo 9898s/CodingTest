@@ -1,16 +1,16 @@
 class Solution {
     public int[] solution(int[] arr, int[][] queries) {
-        int[] answer = new int[arr.length];
+        int[] answer = arr;
         
-        for(int i = 0; i < queries.length; i++) {
-            swap(arr, queries[i][0], queries[i][1]);
+        for (int i = 0; i < queries.length; i++) {
+            swap(answer, queries[i][0], queries[i][1]);
         }
-        return arr;
+        return answer;
     }
     
-    public static void swap(int[] arr, int i, int j) {
-        int temp = arr[i];
+    public void swap(int[] arr, int i, int j) {
+        int tmp = arr[i];
         arr[i] = arr[j];
-        arr[j] = temp;
+        arr[j] = tmp;
     }
 }
