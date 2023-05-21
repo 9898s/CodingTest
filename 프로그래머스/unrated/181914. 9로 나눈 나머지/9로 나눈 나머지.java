@@ -2,11 +2,12 @@ class Solution {
     public int solution(String number) {
         int answer = 0;
         
-        for(char ch : number.toCharArray()) {
-            answer += ch - '0';
+        int sum = 0;
+        for (String str : number.split("")) {
+            sum += Integer.parseInt(str);
         }
         
-        answer %= 9;
+        answer = sum % 9;
         return answer;
     }
 }
