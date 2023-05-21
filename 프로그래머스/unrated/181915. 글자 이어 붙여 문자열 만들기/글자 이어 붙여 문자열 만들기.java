@@ -1,9 +1,9 @@
 class Solution {
     public String solution(String my_string, int[] index_list) {
-        StringBuilder answer = new StringBuilder();
-        for(int i : index_list) {
-            answer.append(my_string.charAt(i));
+        StringBuffer sb = new StringBuffer();
+        for (int item : index_list) {
+            sb.append(my_string.charAt(item));
         }
-        return answer.toString();
+        return sb.toString();
     }
 }
