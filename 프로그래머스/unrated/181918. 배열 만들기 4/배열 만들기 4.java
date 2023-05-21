@@ -1,25 +1,23 @@
-import java.util.ArrayList;
+import java.util.Stack;
 
 class Solution {
     public int[] solution(int[] arr) {
-        ArrayList<Integer> stk = new ArrayList<>();
+        int idx = 0;
+        Stack<Integer> stack = new Stack<>();
 
-        int i = 0;
-        while(i < arr.length) {
-            if(stk.isEmpty()) {
-                stk.add(arr[i]);
-                i++;
+        while (idx < arr.length) {
+            if (stack.isEmpty()) {
+                stack.push(arr[idx++]);
             } else {
-                if(stk.get(stk.size() - 1) < arr[i]) {
-                    stk.add(arr[i]);
-                    i++;
+                if (stack.peek() < arr[idx]) {
+                    stack.push(arr[idx++]);
                 } else {
-                    stk.remove(stk.size() - 1);
+                    stack.pop();
                 }
             }
         }
-        
-        int[] answer = stk.stream().mapToInt(j -> j).toArray();
-        return answer;
+
+        int[] stk = stack.stream().mapToInt(Integer::intValue).toArray();
+        return stk;
     }
 }
