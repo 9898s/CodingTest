@@ -17,11 +17,6 @@ class Solution {
 
         char[] chars = sb.toString().toCharArray();
         Arrays.sort(chars);
-
-        String answer = "";
-        for (char ch : chars) {
-            answer += ch;
-        }
-        return answer;
+        return new String(chars);
     }
 }
