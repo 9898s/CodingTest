@@ -1,10 +1,9 @@
 class Solution {
     public String solution(String my_string, int s, int e) {
-        StringBuffer answer = new StringBuffer();
-        answer.append(my_string.substring(s, e + 1));
-        answer.reverse();
-        answer.insert(0, my_string.substring(0, s));
-        answer.append(my_string.substring(e + 1));
-        return answer.toString();
+        StringBuffer sb = new StringBuffer(my_string);
+        StringBuffer sb2 = new StringBuffer(my_string.substring(s, e + 1)).reverse();
+        
+        sb.replace(s, e + 1, sb2.toString());
+        return sb.toString();
     }
 }
