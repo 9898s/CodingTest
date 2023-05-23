@@ -2,14 +2,14 @@ class Solution {
     public int solution(int n, String control) {
         int answer = n;
         
-        for (char ch : control.toCharArray()) {
-            if(ch == 'w') {
+        for (String s : control.split("")) {
+            if(s.equals("w")) {
                 answer += 1;
-            } else if(ch == 's') {
+            } else if(s.equals("s")) {
                 answer -= 1;
-            } else if(ch == 'd') {
+            } else if(s.equals("d")) {
                 answer += 10;
-            } else if(ch == 'a') {
+            } else if(s.equals("a")) {
                 answer -= 10;
             }
         }
