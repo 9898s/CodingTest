@@ -2,34 +2,30 @@ import java.util.ArrayList;
 
 class Solution {
     public int[] solution(int[] arr) {
-        ArrayList<Integer> num = new ArrayList<>();
+        int startIdx = -1;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == 2) {
+                startIdx = i;
+                break;
+            }
+        }
+        
+        if (startIdx == -1) {
+            return new int[]{-1};
+        }
 
-        int min = -1;
-        for(int i = 0; i < arr.length; i++) {
-            if(arr[i] == 2) {
-                min = i;
+        int endIdx = -1;
+        for (int i = arr.length - 1; i >= 0; i--) {
+            if (arr[i] == 2) {
+                endIdx = i;
                 break;
             }
         }
 
-        int max = 0;
-        for(int i = 0; i < arr.length; i++) {
-            if(arr[i] == 2) {
-                max = i;
-            }
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = startIdx; i <= endIdx; i++) {
+            list.add(arr[i]);
         }
-
-        if(min == -1) {
-            num.add(-1);
-        } else if(min == max) {
-            num.add(2);
-        } else {
-            for(int i = min; i <= max; i++) {
-                num.add(arr[i]);
-            }
-        }
-        
-        int[] answer = num.stream().mapToInt(i -> i).toArray();
-        return answer;
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 }
