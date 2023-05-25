@@ -1,17 +1,20 @@
+import java.util.HashMap;
+
 class Solution {
     public String solution(String my_string, int[] indices) {
-        char[] chs = my_string.toCharArray();
-
-        for(int i : indices) {
-            chs[i] = '1';
+        HashMap<Integer, Character> hm = new HashMap<>();
+        for (int i = 0; i < my_string.length(); i++) {
+            hm.put(i, my_string.charAt(i));
         }
 
-        StringBuffer answer = new StringBuffer();
-        for(int i = 0; i < chs.length; i++) {
-            if(chs[i] != '1') {
-                answer.append(chs[i]);
-            }
+        for (int i = 0; i < indices.length; i++) {
+            hm.remove(indices[i]);
         }
-        return answer.toString();
+
+        StringBuffer sb = new StringBuffer();
+        for (int item : hm.keySet()) {
+            sb.append(hm.get(item));
+        }
+        return sb.toString();
     }
 }
