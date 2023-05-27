@@ -2,15 +2,15 @@ import java.util.Arrays;
 
 class Solution {
     public String solution(String s) {
-        String[] ss = s.split(" ");
-        int[] nums = new int[ss.length];
+        String[] str = s.split(" ");
 
-        for (int i = 0; i < nums.length; i++) {
-            nums[i] = Integer.parseInt(ss[i]);
+        int[] number = new int[str.length];
+        for (int i = 0; i < number.length; i++) {
+            number[i] = Integer.parseInt(str[i]);
         }
 
-        Arrays.sort(nums);
-        String answer = String.format("%d %d", nums[0], nums[nums.length - 1]);
+        Arrays.sort(number);
+        String answer = number[0] + " " + number[number.length - 1];
         return answer;
     }
 }
