@@ -12,8 +12,7 @@ class Solution {
         }
         Collections.sort(list);
         
-        int[] answer = {-1};
-        
+        int[] answer = new int[]{-1};
         if (!list.isEmpty()) {
             answer = list.stream().mapToInt(Integer::intValue).toArray();
         }
