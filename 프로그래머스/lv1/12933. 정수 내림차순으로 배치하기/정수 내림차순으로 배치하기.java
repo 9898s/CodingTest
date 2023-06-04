@@ -1,23 +1,18 @@
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 class Solution {
     public long solution(long n) {
         long answer = 0;
 
-        ArrayList<Long> list = new ArrayList<>();
-        while (n != 0) {
-            list.add(n % 10);
-            n /= 10;
-        }
-        Collections.sort(list, Collections.reverseOrder());
+        char[] chars = String.valueOf(n).toCharArray();
+        Arrays.sort(chars);
 
         StringBuffer sb = new StringBuffer();
-        for (long item : list) {
-            sb.append(item);
+        for (char ch : chars) {
+            sb.append(ch);
         }
 
-        answer = Long.parseLong(sb.toString());
+        answer = Long.parseLong(sb.reverse().toString());
         return answer;
     }
 }
