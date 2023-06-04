@@ -1,22 +1,19 @@
+import java.util.Arrays;
+
 class Solution {
     public int[] solution(int[] arr) {
-        int size = arr.length == 1 ? arr.length : arr.length - 1;
-        int[] answer = new int[size];
-        
-        if(size == 1) {
-            answer[0] = -1;
-        } else {
-            int min = arr[0];
-            
-            for(int i = 1; i < arr.length; i++) {
-                if(min > arr[i]) {
-                    min = arr[i];
-                }
-            }
-            
+        int[] arr2 = arr.clone();
+        Arrays.sort(arr2);
+
+        int min = arr2[0];
+
+        int[] answer = new int[]{-1};
+        if (arr.length - 1 > 0) {
+            answer = new int[arr.length - 1];
+
             int idx = 0;
-            for(int i = 0; i < arr.length; i++) {
-                if(arr[i] != min) {
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] != min) {
                     answer[idx++] = arr[i];
                 }
             }
