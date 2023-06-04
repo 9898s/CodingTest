@@ -1,14 +1,15 @@
 class Solution {
     public boolean solution(String s) {
-        if(s.length() != 4 && s.length() != 6) {
-            return false;
-        }
+        boolean answer = false;
         
-        for(char ch : s.toCharArray()) {
-            if(ch - '0' > 9) {
-                return false;
+        if (s.length() == 4 || s.length() == 6) {
+            for (char ch : s.toCharArray()) {
+                if (!Character.isDigit(ch)) {
+                    return false;
+                }
             }
+            answer = true;
         }
-        return true;
+        return answer;
     }
 }
