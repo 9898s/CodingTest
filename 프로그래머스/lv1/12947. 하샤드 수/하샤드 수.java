@@ -1,9 +1,17 @@
 class Solution {
     public boolean solution(int x) {
+        boolean answer = true;
+        
         int sum = 0;
-        for(char ch : String.valueOf(x).toCharArray()) {
+        char[] chars = String.valueOf(x).toCharArray();
+        
+        for (char ch : chars) {
             sum += ch - '0';
         }
-        return x % sum == 0 ? true : false;
+        
+        if (x % sum != 0) {
+            answer = false;
+        }
+        return answer;
     }
 }
