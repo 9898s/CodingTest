@@ -1,9 +1,12 @@
+import java.util.*;
+
 public class Solution {
     public int solution(int n) {
         int answer = 0;
-        String number = String.valueOf(n);
-        for(int i = 0; i < number.length(); i++) {
-            answer += number.charAt(i) - '0';
+        
+        String str = String.valueOf(n);
+        for (char ch : str.toCharArray()) {
+            answer += ch - '0';
         }
         return answer;
     }
