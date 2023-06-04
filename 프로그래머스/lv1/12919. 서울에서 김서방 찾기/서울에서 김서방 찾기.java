@@ -1,13 +1,15 @@
+import java.util.HashMap;
+
 class Solution {
     public String solution(String[] seoul) {
         String answer = "";
         
+        HashMap<String, Integer> hm = new HashMap<>();
         for (int i = 0; i < seoul.length; i++) {
-            if(seoul[i].equals("Kim")) {
-                answer = "김서방은 " + i + "에 있다";
-                break;
-            }
+            hm.put(seoul[i], i);
         }
+        
+        answer = String.format("김서방은 %d에 있다", hm.get("Kim"));
         return answer;
     }
 }
