@@ -6,7 +6,7 @@ class Solution {
         int a = sc.nextInt();
         int b = sc.nextInt();
 
-        for(int i = 0; i < b; i++) {
+        for (int i = 0; i < b; i++) {
             System.out.println("*".repeat(a));
         }
     }
