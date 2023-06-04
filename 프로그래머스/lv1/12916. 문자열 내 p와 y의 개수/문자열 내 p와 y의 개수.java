@@ -1,16 +1,23 @@
+import java.util.HashMap;
+
 class Solution {
     boolean solution(String s) {
-        boolean answer = false;
+        boolean answer = true;
         
-        int pCount = 0;
-        int yCount = 0;
-        for(int i = 0; i < s.length(); i++) {
-            if(s.charAt(i) == 'p' || s.charAt(i) == 'P') {
-                pCount++;
-            } else if(s.charAt(i) == 'y' || s.charAt(i) == 'Y') {
-                yCount++;
+        String s2 = s.toLowerCase();
+        int[] arr = new int[2];
+        
+        for (char ch : s2.toCharArray()) {
+            if (ch == 'p') {
+                arr[0]++;
+            } else if (ch == 'y') {
+                arr[1]++;
             }
         }
-        return answer = (pCount == yCount) ? true : false;
+        
+        if (arr[0] != arr[1]) {
+            answer = false;
+        }
+        return answer;
     }
 }
