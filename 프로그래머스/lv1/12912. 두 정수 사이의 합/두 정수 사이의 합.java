@@ -2,10 +2,11 @@ class Solution {
     public long solution(int a, int b) {
         long answer = 0;
         
-        if(a < b) {
-            answer = (long)(a + b) * (b - a + 1) / 2;
-        } else {
-            answer = (long)(a + b) * (a - b + 1) / 2;
+        int max = Math.max(a, b);
+        int min = Math.min(a, b);
+        
+        for (int i = min; i <= max; i++) {
+            answer += i;
         }
         return answer;
     }
