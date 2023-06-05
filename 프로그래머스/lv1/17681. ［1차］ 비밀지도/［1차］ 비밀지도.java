@@ -1,13 +1,13 @@
 class Solution {
     public String[] solution(int n, int[] arr1, int[] arr2) {
-        String[] answer = new String[n];
-
-        for (int i = 0; i < n; i++) {
-            StringBuffer sb = new StringBuffer(Integer.toBinaryString(arr1[i] | arr2[i]));
-            if(sb.length() < n) {
-                sb.insert(0, "0".repeat(n - sb.length()));
+        String[] answer = new String[arr1.length];
+        
+        for (int i = 0; i < arr1.length; i++) {
+            String binaryNumber = Integer.toString(arr1[i] | arr2[i], 2);
+            if (binaryNumber.length() < n) {
+                binaryNumber = "0".repeat(n - binaryNumber.length()) + binaryNumber;
             }
-            answer[i] = sb.toString().replace("1", "#").replace("0", " ");
+            answer[i] = binaryNumber.replaceAll("0", " ").replaceAll("1", "#");
         }
         return answer;
     }
