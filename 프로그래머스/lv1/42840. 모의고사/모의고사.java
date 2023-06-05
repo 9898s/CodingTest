@@ -1,38 +1,43 @@
+import java.util.ArrayList;
+
 class Solution {
     public int[] solution(int[] answers) {
+        /*
+        1: 1, 2, 3, 4, 5
+        2: 2, 1, 2, 3, 2, 4, 2, 5
+        3: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5
+        */
+        
         int[] A = {1, 2, 3, 4, 5};
         int[] B = {2, 1, 2, 3, 2, 4, 2, 5};
         int[] C = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
-
-
-        int[] answer = new int[3];
+        
+        int[] person = new int[3];
         for (int i = 0; i < answers.length; i++) {
             if (A[i % 5] == answers[i]) {
-                answer[0]++;
+                person[0]++;
             }
             if (B[i % 8] == answers[i]) {
-                answer[1]++;
+                person[1]++;
             }
             if (C[i % 10] == answers[i]) {
-                answer[2]++;
+                person[2]++;
             }
         }
-
-        if(answer[0] > answer[1] && answer[0] > answer[2]) {
-            answer = new int[]{1};
-        } else if(answer[1] > answer[0] && answer[1] > answer[2]) {
-            answer = new int[]{2};
-        } else if(answer[2] > answer[0] && answer[2] > answer[1]) {
-            answer = new int[]{3};
-        } else if(answer[0] == answer[1] && answer[1] != answer[2]) {
-            answer = new int[]{1, 2};
-        } else if(answer[0] == answer[2] && answer[0] != answer[1]) {
-            answer = new int[]{1, 3};
-        } else if(answer[1] == answer[2] && answer[0] != answer[1]) {
-            answer = new int[]{2, 3};
-        } else if(answer[0] == answer[1] && answer[1] == answer[2]) {
-            answer = new int[]{1, 2, 3};
+        
+        int max = 0;
+        for (int i = 0; i < person.length; i++) {
+            max = Math.max(max, person[i]);
         }
+        
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < person.length; i++) {
+            if (max == person[i]) {
+                list.add(i + 1);
+            }
+        }
+        
+        int[] answer = list.stream().mapToInt(Integer::intValue).toArray();
         return answer;
     }
 }
