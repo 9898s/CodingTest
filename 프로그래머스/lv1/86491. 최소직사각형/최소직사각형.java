@@ -1,19 +1,21 @@
-import java.util.Arrays;
-
 class Solution {
     public int solution(int[][] sizes) {
-        int[] x = new int[sizes.length];
-        int[] y = new int[sizes.length];
-
+        int answer = 0;
+        
+        int x = 0;
+        int y = 0;
+        
         for (int i = 0; i < sizes.length; i++) {
-            x[i] = Math.max(sizes[i][0], sizes[i][1]);
-            y[i] = Math.min(sizes[i][0], sizes[i][1]);
+            for (int j = 0; j < 2; j++) {
+                int tmp1 = Math.max(sizes[i][0], sizes[i][1]);
+                int tmp2 = Math.min(sizes[i][0], sizes[i][1]);
+                
+                x = Math.max(x, tmp1);
+                y = Math.max(y, tmp2);
+            }
         }
         
-        Arrays.sort(x);
-        Arrays.sort(y);
-        
-        int answer = x[x.length - 1] * y[y.length - 1];
+        answer = x * y;
         return answer;
     }
 }
