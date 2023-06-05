@@ -1,8 +1,9 @@
 class Solution {
     public int solution(int[] nums) {
         int answer = 0;
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
+
+        for (int i = 0; i < nums.length - 2; i++) {
+            for (int j = i + 1; j < nums.length - 1; j++) {
                 for (int k = j + 1; k < nums.length; k++) {
                     if (isPrime(nums[i] + nums[j] + nums[k])) {
                         answer++;
@@ -13,11 +14,11 @@ class Solution {
         return answer;
     }
     
-    public static boolean isPrime(int n) {
-        int n2 = (int) Math.sqrt(n);
-
-        for (int i = 2; i <= n2; i++) {
-            if (n % i == 0) {
+    public boolean isPrime(int num) {
+        for (int i = 2; i * i <= num; i++) {
+            if (i * i == num) {
+                return false;
+            } else if (num % i == 0) {
                 return false;
             }
         }
