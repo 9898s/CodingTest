@@ -3,14 +3,12 @@ import java.util.Arrays;
 class Solution {
     public String[] solution(String[] strings, int n) {
         String[] answer = strings;
-
+        
         for (int i = 0; i < answer.length; i++) {
             for (int j = i + 1; j < answer.length; j++) {
-                if(answer[i].charAt(n) > answer[j].charAt(n)) {
-                    String str = answer[i];
-                    answer[i] = answer[j];
-                    answer[j] = str;
-                } else if(answer[i].charAt(n) == answer[j].charAt(n)) {
+                if (answer[i].charAt(n) > answer[j].charAt(n)) {
+                    swap(answer, i, j);
+                } else if (answer[i].charAt(n) == answer[j].charAt(n)) {
                     String[] tmp = {answer[i], answer[j]};
                     Arrays.sort(tmp);
                     
@@ -20,5 +18,11 @@ class Solution {
             }
         }
         return answer;
+    }
+    
+    public void swap(String[] arr, int i, int j) {
+        String tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
     }
 }
