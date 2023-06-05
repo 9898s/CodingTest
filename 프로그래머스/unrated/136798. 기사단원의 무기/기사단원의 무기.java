@@ -1,25 +1,30 @@
 class Solution {
     public int solution(int number, int limit, int power) {
         int answer = 0;
-        for (int i = 1; i <= number; i++) {
-            if (divisor(i) > limit) {
-                answer += power;
-            } else {
-                answer += divisor(i);
+        int[] damage = new int[number];
+        
+        for (int i = 0; i < damage.length; i++) {
+            damage[i] = getDivisor(i + 1);
+            if (damage[i] > limit) {
+                damage[i] = power;
             }
+        }
+        
+        for (int item : damage) {
+            answer += item;
         }
         return answer;
     }
     
-    public static int divisor(int number) {
-        int result = 0;
-        for (int i = 1; i <= Math.sqrt(number); i++) {
-            if (i * i == number) {
-                result++;
-            } else if (number % i == 0) {
-                result += 2;
+    public int getDivisor(int num) {
+        int count = 0;
+        for (int i = 1; i * i <= num; i++) {
+            if (i * i == num) {
+                count++;
+            } else if (num % i == 0) {
+                count += 2;
             }
         }
-        return result;
+        return count;
     }
 }
