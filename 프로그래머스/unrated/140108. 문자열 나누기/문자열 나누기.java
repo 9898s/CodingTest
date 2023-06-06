@@ -1,21 +1,16 @@
 class Solution {
     public int solution(String s) {
-        if (s.length() == 1) {
-            return 1;
-        }
-        
         int answer = 0;
-        char[] chars = s.toCharArray();
         
-        char x = chars[0];
-        int count = 1;
+        char x = '1';
+        int count = 0;
         
-        for (int i = 1; i < chars.length; i++) {
+        for (char ch : s.toCharArray()) {
             if (x == '1') {
-                x = chars[i];
+                x = ch;
             }
             
-            if (chars[i] == x) {
+            if (x == ch) {
                 count++;
             } else {
                 count--;
@@ -25,12 +20,10 @@ class Solution {
                     answer++;
                 }
             }
-            
-            if (i == chars.length - 1) {
-                if (count > 0) {
-                    answer++;
-                }
-            }
+        }
+        
+        if (count > 0) {
+            answer++;
         }
         return answer;
     }
