@@ -2,33 +2,26 @@ import java.util.HashMap;
 
 class Solution {
     public int[] solution(String[] keymap, String[] targets) {
-        int[] answer = new int[targets.length];
         HashMap<Character, Integer> hm = new HashMap<>();
-        
-        for (String key : keymap) {
-            for (char ch : key.toCharArray()) {
-                if (hm.containsKey(ch)) {
-                    if (hm.get(ch) > key.indexOf(ch)) {
-                        hm.put(ch, key.indexOf(ch) + 1);
-                    }
-                } else {
-                    hm.put(ch, key.indexOf(ch) + 1);
-                }
+        for (int i = 0; i < keymap.length; i++) {
+            for (int j = 0; j < keymap[i].length(); j++) {
+                hm.put(keymap[i].charAt(j), Math.min(hm.getOrDefault(keymap[i].charAt(j), 100), j));
             }
         }
 
         int idx = 0;
-        for (String target : targets) {
-            int count = 0;
-            for (char ch : target.toCharArray()) {
-                if (!hm.containsKey(ch)) {
-                    count = 0;
-                    break;
+        int[] answer = new int[targets.length];
+
+        for (int i = 0; i < targets.length; i++) {
+            int sum = 0;
+            for (int j = 0; j < targets[i].length(); j++) {
+                if (hm.containsKey(targets[i].charAt(j))) {
+                    sum += hm.get(targets[i].charAt(j)) + 1;
                 } else {
-                    count += hm.get(ch);
+                    sum = Integer.MIN_VALUE;
                 }
             }
-            answer[idx++] = count == 0 ? -1 : count;
+            answer[idx++] = sum <= 0 ? -1 : sum;
         }
         return answer;
     }
