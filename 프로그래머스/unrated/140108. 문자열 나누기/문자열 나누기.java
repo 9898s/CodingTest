@@ -1,32 +1,36 @@
 class Solution {
     public int solution(String s) {
+        if (s.length() == 1) {
+            return 1;
+        }
+        
         int answer = 0;
-        char first = s.charAt(0);
-
-        int mainCnt = 1;
-        int subCnt = 0;
-
-        for (int i = 1; i < s.length(); i++) {
-            if (first == '1') {
-                first = s.charAt(i);
-                continue;
+        char[] chars = s.toCharArray();
+        
+        char x = chars[0];
+        int count = 1;
+        
+        for (int i = 1; i < chars.length; i++) {
+            if (x == '1') {
+                x = chars[i];
             }
-            if (first == s.charAt(i)) {
-                mainCnt++;
+            
+            if (chars[i] == x) {
+                count++;
             } else {
-                subCnt++;
-
-                if (mainCnt == subCnt) {
-                    first = '1';
-                    mainCnt = 1;
-                    subCnt = 0;
+                count--;
+                
+                if (count == 0) {
+                    x = '1';
                     answer++;
                 }
             }
-        }
-
-        if (first != '1') {
-            answer++;
+            
+            if (i == chars.length - 1) {
+                if (count > 0) {
+                    answer++;
+                }
+            }
         }
         return answer;
     }
