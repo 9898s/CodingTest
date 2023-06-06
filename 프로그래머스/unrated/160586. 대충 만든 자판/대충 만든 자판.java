@@ -18,10 +18,11 @@ class Solution {
                 if (hm.containsKey(targets[i].charAt(j))) {
                     sum += hm.get(targets[i].charAt(j)) + 1;
                 } else {
-                    sum = Integer.MIN_VALUE;
+                    sum = -1;
+                    break;
                 }
             }
-            answer[idx++] = sum <= 0 ? -1 : sum;
+            answer[idx++] = sum;
         }
         return answer;
     }
