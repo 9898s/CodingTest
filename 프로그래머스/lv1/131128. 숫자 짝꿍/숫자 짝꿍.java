@@ -24,11 +24,8 @@ class Solution {
         if (list.size() == 0) {
             return "-1";
         }
-        
-        if (list.size() > 1) {
-            if (list.get(0) == '0' && list.get(1) == '0') {
-                return "0";
-            }
+        if (list.get(0) == '0') {
+            return "0";
         }
 
         StringBuilder sb = new StringBuilder();
