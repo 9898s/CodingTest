@@ -1,23 +1,22 @@
 class Solution {
     public String solution(String s, String skip, int index) {
         String answer = "";
-        for (char c : s.toCharArray()) {
-            int idx = 0, tmp = 0;
-            String str = "";
+        char[] chars = new char[s.length()];
 
-            while (idx < index) {
-                tmp++;
-                if (c + tmp > 'z') {
-                    c = 'a';
-                    tmp = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int count = 0;
+            char ch = s.charAt(i);
+
+            while (count < index) {
+                ch++;
+                if (ch > 'z') {
+                    ch = 'a';
                 }
-                str = String.valueOf(Character.toChars(c + tmp));
-
-                if (!skip.contains(str)) {
-                    idx++;
+                if (!skip.contains(String.valueOf(ch))) {
+                    count++;
                 }
             }
-            answer += str;
+            answer += ch;
         }
         return answer;
     }
