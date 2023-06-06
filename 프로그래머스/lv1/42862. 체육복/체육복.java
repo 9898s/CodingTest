@@ -15,29 +15,15 @@ class Solution {
         
         for (int i = 0; i < count.length; i++) {
             if (count[i] == 0) {
-                if (i == 0) {
-                    if (count[i + 1] == 2) {
-                        count[i]++;
-                        count[i + 1]--;
-                    }
-                } else if (i == count.length - 1) {
-                    if (count[i - 1] == 2) {
-                        count[i]++;
-                        count[i - 1]--;
-                    }
-                } else {
-                    if (count[i - 1] == 2) {
-                        count[i]++;
-                        count[i - 1]--;
-                    } else if (count[i + 1] == 2) {
-                        count[i]++;
-                        count[i + 1]--;
-                    }
+                if (i - 1 >= 0 && count[i - 1] == 2) {
+                    count[i]++;
+                    count[i - 1]--;
+                } else if (i + 1 <= count.length - 1 && count[i + 1] == 2) {
+                    count[i]++;
+                    count[i + 1]--;
                 }
             }
         }
-        
-        System.out.println(Arrays.toString(count));
         
         for (int item : count) {
             if (item > 0) {
