@@ -1,30 +1,25 @@
 import java.util.HashMap;
-import java.util.Map;
 
 class Solution {
     public String[] solution(String[] players, String[] callings) {
+        String[] answer = players.clone();
+        
         HashMap<String, Integer> hm = new HashMap<>();
-        for (int i = 0; i < players.length; i++) {
-            hm.put(players[i], i);
+        for (int i = 0; i < answer.length; i++) {
+            hm.put(answer[i], i);
         }
-
-        for (String item : callings) {
-            String name = players[hm.get(item) - 1];
-            int rank = hm.get(item);
-
-            hm.put(item, hm.get(name));
+        
+        for (int i = 0; i < callings.length; i++) {
+            String name = answer[hm.get(callings[i]) - 1];
+            
+            swap(answer, hm.get(callings[i]), hm.get(callings[i]) - 1);
             hm.put(name, hm.get(name) + 1);
-            swap(players, rank, hm.get(name) - 1);
-        }
-
-        String[] answer = new String[players.length];
-        for (Map.Entry<String, Integer> entry : hm.entrySet()) {
-            answer[entry.getValue()] = entry.getKey();
+            hm.put(callings[i], hm.get(callings[i]) - 1);
         }
         return answer;
     }
     
-    public static void swap(String[] arr, int x, int y) {
+    public void swap(String[] arr, int x, int y) {
         String tmp = arr[x];
         arr[x] = arr[y];
         arr[y] = tmp;
