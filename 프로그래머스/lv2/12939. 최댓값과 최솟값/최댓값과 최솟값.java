@@ -5,14 +5,14 @@ class Solution {
         String answer = "";
         
         String[] str = s.split(" ");
-        int[] numbers = new int[str.length];
+        int[] arr = new int[str.length];
         
         for (int i = 0; i < str.length; i++) {
-            numbers[i] = Integer.parseInt(str[i]);
+            arr[i] = Integer.parseInt(str[i]);
         }
-        Arrays.sort(numbers);
+        Arrays.sort(arr);
         
-        answer = numbers[0] + " " + numbers[numbers.length - 1];
+        answer = arr[0] + " " + arr[arr.length - 1];
         return answer;
     }
 }
