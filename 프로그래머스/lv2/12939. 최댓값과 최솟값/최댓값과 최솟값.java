@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 class Solution {
     public String solution(String s) {
         /*     
@@ -11,14 +9,15 @@ class Solution {
         String answer = "";
         
         String[] strings = s.split(" ");
-        int[] numbers = new int[strings.length];
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
         
-        for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = Integer.parseInt(strings[i]);
+        for (int i = 0; i < strings.length; i++) {
+            max = Math.max(max, Integer.parseInt(strings[i]));
+            min = Math.min(min, Integer.parseInt(strings[i]));
         }
-        Arrays.sort(numbers);
         
-        answer = numbers[0] + " " + numbers[numbers.length - 1];
+        answer = min + " " + max;
         return answer;
     }
 }
