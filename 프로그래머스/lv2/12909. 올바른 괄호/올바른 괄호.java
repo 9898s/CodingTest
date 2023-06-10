@@ -2,24 +2,18 @@ import java.util.Stack;
 
 class Solution {
     boolean solution(String s) {
-        boolean answer = true;
-        Stack<Character> stack = new Stack<>();
-        
+        Stack<Character> stack = new Stack();
         for (char ch : s.toCharArray()) {
-            if (ch == '(') {
-                stack.add(ch);
-            } else {
-                if (stack.isEmpty()) {
-                    return false;
-                } else {
+            if (ch == ')') {
+                if (!stack.isEmpty() && stack.peek() == '(') {
                     stack.pop();
+                } else {
+                    return false;
                 }
+            } else {
+                stack.push('(');
             }
         }
-        
-        if (!stack.isEmpty()) {
-            return false;
-        }
-        return answer;
+        return stack.size() == 0;
     }
 }
