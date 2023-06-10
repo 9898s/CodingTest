@@ -4,20 +4,18 @@ class Solution
 {
     public int solution(String s)
     {
-        int answer = 1;
+        int answer = 0;
         Stack<Character> stack = new Stack<>();
         
         for (char ch : s.toCharArray()) {
             if (!stack.isEmpty() && stack.peek() == ch) {
                 stack.pop();
             } else {
-                stack.push(ch);
+                stack.add(ch);
             }
         }
         
-        if (!stack.isEmpty()) {
-            answer = 0;
-        }
+        answer = stack.size() == 0 ? 1 : 0;
         return answer;
     }
 }
