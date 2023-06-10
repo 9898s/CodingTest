@@ -1,31 +1,26 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 
 class Solution {
     public int[] solution(int n, String[] words) {
-        int cycle = 0;
         int[] answer = new int[2];
-        ArrayList<String> list = new ArrayList<>();
-
+        HashMap<String, String> hm = new HashMap<>();
+        
         for (int i = 0; i < words.length; i++) {
-            if (i % n == 0) {
-                cycle++;
-            }
-
-            if (list.contains(words[i])) {
+            if (hm.containsKey(words[i])) {
                 answer[0] = i % n + 1;
-                answer[1] = cycle;
+                answer[1] = i / n + 1;
                 break;
             }
-
+            
             if (i > 0) {
-                if (words[i].charAt(0) != words[i - 1].charAt(words[i - 1].length() - 1)) {
+                if (words[i - 1].charAt(words[i-1].length() - 1) != words[i].charAt(0)) {
                     answer[0] = i % n + 1;
-                    answer[1] = cycle;
+                    answer[1] = i / n + 1;
                     break;
                 }
             }
-
-            list.add(words[i]);
+            
+            hm.put(words[i], words[i]);
         }
         return answer;
     }
