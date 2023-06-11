@@ -10,7 +10,7 @@ class Solution {
         while(!s.equals("1")) {
             answer[0]++;
             answer[1] += s.length() - s.replaceAll("0", "").length();
-            s = Integer.toString(s.replaceAll("0", "").length(), 2);
+            s = Integer.toBinaryString(s.replaceAll("0", "").length());
         }
         return answer;
     }
