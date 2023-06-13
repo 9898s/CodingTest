@@ -1,22 +1,25 @@
 class Solution {
     public int solution(int[] arr) {
-        int answer = 0;
+        /*
+        배열 원소들의 최소 공배수를 구해주면 된다.
+        최소 공배수 구하는 방법: 두 원소의 곱 / 두 원소의 최대 공약수
+        */
         
-        answer = arr[0];
-        for (int i = 1; i < arr.length; i++) {
-            answer = lcm(answer, arr[i]);
+        int answer = 1;
+        for(int item : arr) {
+            answer = lcm(answer, item);
         }
         return answer;
     }
     
-    public int gcd(int i, int j) {
-        if (i % j == 0) {
-            return j;
+    public int gcd(int a, int b) {
+        if (a % b == 0) {
+            return b;
         }
-        return gcd(j, i % j);
+        return gcd(b, a % b);
     }
     
-    public int lcm(int i, int j) {
-        return i * j / gcd(i, j);
+    public int lcm(int a, int b) {
+        return a * b / gcd(a, b);
     }
 }
