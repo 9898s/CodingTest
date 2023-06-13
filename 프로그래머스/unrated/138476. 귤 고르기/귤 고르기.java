@@ -1,9 +1,15 @@
 import java.util.HashMap;
-import java.util.Collections;
 import java.util.ArrayList;
+import java.util.Collections;
 
 class Solution {
     public int solution(int k, int[] tangerine) {
+        /*
+        귤의 종류와 개수를 카운트 해준다.
+        개수를 기준으로 오름차순 정렬을 해준다.
+        k의 개수와 귤의 개수를 비교해서 최솟값을 구해준다.
+        */
+        
         int answer = 0;
         
         HashMap<Integer, Integer> hm = new HashMap<>();
@@ -15,15 +21,13 @@ class Solution {
         for (int item : hm.keySet()) {
             list.add(hm.get(item));
         }
-        Collections.sort(list, Collections.reverseOrder());
+        Collections.sort(list);
         
-        for (int i = 0; i < list.size(); i++) {
-            k -= list.get(i);
+        int idx = list.size() - 1;
+        while (k > 0) {
+            k -= list.get(idx);
+            idx--;
             answer++;
-            
-            if (k <= 0) {
-                break;
-            }
         }
         return answer;
     }
