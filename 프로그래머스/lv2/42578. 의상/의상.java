@@ -10,7 +10,7 @@ class Solution {
         }
         
         for (String str : hm.keySet()) {
-            answer *= hm.get(str) + 1; 
+            answer *= (hm.get(str) + 1);
         }
         return answer - 1;
     }
