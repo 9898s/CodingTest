@@ -2,19 +2,17 @@ import java.util.HashSet;
 
 class Solution {
     public int solution(int[] elements) {
-        int[] newElements = new int[elements.length * 2];
-        for (int i = 0; i < newElements.length; i++) {
-            newElements[i] = elements[i % elements.length];
-        }
-
-        HashSet<Integer> hashSet = new HashSet<>();
-        for (int i = 0; i < elements.length; i++) {
-            int sum = 0;
-            for (int j = i; j < i + elements.length; j++) {
-                sum += newElements[j];
-                hashSet.add(sum);
+        HashSet<Integer> hs = new HashSet<>();
+        
+        for (int i = 1; i <= elements.length; i++) {
+            for (int j = 0; j < elements.length; j++) {
+                int sum = 0;
+                for (int k = j; k < j + i; k++) {
+                    sum += elements[k % elements.length];
+                }
+                hs.add(sum);
             }
         }
-        return hashSet.size();
+		return hs.size();
     }
 }
