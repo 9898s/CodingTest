@@ -1,6 +1,4 @@
-import java.util.Deque;
 import java.util.Stack;
-import java.util.LinkedList;
 
 class Solution {
     public int solution(String s) {
@@ -11,36 +9,25 @@ class Solution {
         
         int answer = 0;
         
-        Deque<Character> deque = new LinkedList<>();
-        for (char ch : s.toCharArray()) {
-            deque.add(ch);
-        }
-        
-        for (int i = 0; i < deque.size(); i++) {
-            deque.addLast(deque.removeFirst());
+        StringBuilder sb = new StringBuilder(s);
+        for (int i = 0; i < s.length(); i++) {
+            sb.append(sb.charAt(0));
+            sb.delete(0, 1);
             
             Stack<Character> stack = new Stack<>();
-            for (char ch : deque) {
-                if (ch == ')') {
-                    if (!stack.isEmpty() && stack.peek() == '(') {
+            for (char ch : sb.toString().toCharArray()) {
+                if (!stack.isEmpty()) {
+                    if (ch == ')' && stack.peek() == '(') {
+                        stack.pop();
+                    } else if (ch == ']' && stack.peek() == '[') {
+                        stack.pop();
+                    } else if (ch == '}' && stack.peek() == '{') {
                         stack.pop();
                     } else {
-                        stack.add(ch);
-                    }
-                } else if (ch == ']') {
-                    if (!stack.isEmpty() && stack.peek() == '[') {
-                        stack.pop();
-                    } else {
-                        stack.add(ch);
-                    }
-                } else if (ch == '}') {
-                    if (!stack.isEmpty() && stack.peek() == '{') {
-                        stack.pop();
-                    } else {
-                        stack.add(ch);
+                        stack.push(ch);
                     }
                 } else {
-                    stack.add(ch);
+                    stack.push(ch);
                 }
             }
             
