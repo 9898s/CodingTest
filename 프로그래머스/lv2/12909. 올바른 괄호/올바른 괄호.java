@@ -2,18 +2,27 @@ import java.util.Stack;
 
 class Solution {
     boolean solution(String s) {
-        Stack<Character> stack = new Stack();
+        boolean answer = checkMatching(s);
+        return answer;
+    }
+    
+    public boolean checkMatching(String s) {
+        Stack<Character> stack = new Stack<>();
+        
         for (char ch : s.toCharArray()) {
-            if (ch == ')') {
-                if (!stack.isEmpty() && stack.peek() == '(') {
-                    stack.pop();
-                } else {
+            if (ch == '(') {
+                stack.push(ch);
+            } else if (ch == ')') {
+                if (stack.isEmpty()) {
                     return false;
+                } else {
+                    char open_ch = stack.pop();
+                    if (open_ch == '(' && ch != ')') {
+                        return false;
+                    }
                 }
-            } else {
-                stack.push('(');
             }
         }
-        return stack.size() == 0;
+        return stack.isEmpty();
     }
 }
