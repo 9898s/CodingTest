@@ -13,11 +13,12 @@ public class Main {
         int A = Integer.parseInt(st.nextToken());
         int B = Integer.parseInt(st.nextToken());
 
-        String sb = String.valueOf(A + B) + '\n' +
-                (A - B) + '\n' +
-                A * B + '\n' +
-                A / B + '\n' +
-                A % B + '\n';
+        StringBuilder sb = new StringBuilder();
+        sb.append(A + B).append('\n');
+        sb.append(A - B).append('\n');
+        sb.append(A * B).append('\n');
+        sb.append(A / B).append('\n');
+        sb.append(A % B).append('\n');
 
         System.out.print(sb);
     }
