@@ -1,22 +1,21 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        StringBuilder sb = new StringBuilder();
         while (true) {
-            int n = sc.nextInt();
-            if (n == 0) {
+            String str = br.readLine();
+            if (str.equals("0")) {
                 break;
             }
 
-            StringBuilder sb = new StringBuilder();
-            sb.append(n);
-
-            String s1 = String.valueOf(n);
-            String s2 = sb.reverse().toString();
-
-            System.out.println(s1.equals(s2) ? "yes" : "no");
+            StringBuilder str2 = new StringBuilder(str);
+            sb.append(str.contentEquals(str2.reverse()) ? "yes" : "no").append('\n');
         }
+        System.out.print(sb);
     }
 }
