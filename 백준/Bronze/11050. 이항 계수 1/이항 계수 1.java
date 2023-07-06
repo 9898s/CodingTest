@@ -1,19 +1,25 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int N = sc.nextInt();
-        int K = sc.nextInt();
+        String str = br.readLine();
+        StringTokenizer st = new StringTokenizer(str, " ");
+
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
 
         System.out.println(combination(N, K));
     }
 
-    public static int combination(int n, int k) {
-        if (k == 0 || k == n) {
+    public static int combination(int N, int K) {
+        if (N == K || K == 0) {
             return 1;
         }
-        return combination(n - 1, k - 1) + combination(n - 1, k);
+        return combination(N - 1, K - 1) + combination(N - 1, K);
     }
 }
