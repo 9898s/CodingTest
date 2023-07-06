@@ -1,22 +1,29 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int N = sc.nextInt();
-        int M = sc.nextInt();
+        String str = br.readLine();
+        StringTokenizer st = new StringTokenizer(str, " ");
 
-        System.out.println(GCD(N, M));
-        System.out.println(N * M / GCD(N, M));
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+
+        int n = gcd(N, K);
+        System.out.println(n);
+        System.out.println(N * K / n);
     }
 
-    public static int GCD(int x, int y) {
-        while (y != 0) {
-            int r = x % y;
-            x = y;
-            y = r;
+    public static int gcd(int a, int b) {
+        while (b != 0) {
+            int c = a % b;
+            a = b;
+            b = c;
         }
-        return x;
+        return a;
     }
 }
