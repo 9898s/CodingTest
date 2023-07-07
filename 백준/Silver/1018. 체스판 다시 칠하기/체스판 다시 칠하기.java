@@ -1,7 +1,10 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-    private final static boolean[][] WHITE = {
+    public static final boolean[][] WHITE = {
             {true, false, true, false, true, false, true, false},
             {false, true, false, true, false, true, false, true},
             {true, false, true, false, true, false, true, false},
@@ -9,41 +12,46 @@ public class Main {
             {true, false, true, false, true, false, true, false},
             {false, true, false, true, false, true, false, true},
             {true, false, true, false, true, false, true, false},
-            {false, true, false, true, false, true, false, true},
+            {false, true, false, true, false, true, false, true}
     };
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int N = sc.nextInt(); // 세로
-        int M = sc.nextInt(); // 가로
+        String str = br.readLine();
+        StringTokenizer st = new StringTokenizer(str, " ");
+
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
 
         boolean[][] board = new boolean[N][M];
+
         for (int i = 0; i < N; i++) {
-            String str = sc.next();
-            for (int j = 0; j < str.length(); j++) {
-                board[i][j] = str.charAt(j) == 'W';
+            String line = br.readLine();
+
+            for (int j = 0; j < M; j++) {
+                board[i][j] = line.charAt(j) == 'W';
             }
         }
 
-        int minValue = Integer.MAX_VALUE;
+        int answer = Integer.MAX_VALUE;
         for (int i = 0; i < N - 7; i++) {
             for (int j = 0; j < M - 7; j++) {
-                minValue = Math.min(minValue, checkBoard(i, j, board));
+                answer = Math.min(answer, check(board, i, j));
             }
         }
-        System.out.println(minValue);
+        System.out.println(answer);
     }
 
-    public static int checkBoard(int n, int m, boolean[][] board) {
-        int count = 0;
-        for (int i = n; i < n + 8; i++) {
-            for (int j = m; j < m + 8; j++) {
-                if (board[i][j] != WHITE[i - n][j - m]) {
-                    count++;
+    public static int check(boolean[][] board, int h, int w) {
+        int cnt = 0;
+        for (int i = h; i < h + 8; i++) {
+            for (int j = w; j < w + 8; j++) {
+                if (board[i][j] != WHITE[i - h][j - w]) {
+                    cnt++;
                 }
             }
         }
-        return Math.min(count, 64 - count);
+        return Math.min(64 - cnt, cnt);
     }
 }
