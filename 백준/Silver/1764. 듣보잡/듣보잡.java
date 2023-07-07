@@ -1,39 +1,49 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int M = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        HashMap<String, Integer> hashMap = new HashMap<>();
+        String str = br.readLine();
+        StringTokenizer st = new StringTokenizer(str, " ");
+        StringBuilder sb = new StringBuilder();
 
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        HashMap<String, Integer> hm = new HashMap<>();
         for (int i = 0; i < N + M; i++) {
-            String name = sc.next();
+            String name = br.readLine();
 
             if (i < N) {
-                hashMap.put(name, hashMap.getOrDefault(name, 0) + 1);
+                hm.put(name, hm.getOrDefault(name, 0) + 1);
             } else {
-                hashMap.put(name, hashMap.getOrDefault(name, 0) - 1);
+                hm.put(name, hm.getOrDefault(name, 0) - 1);
             }
         }
 
-        ArrayList<String> list = new ArrayList<>();
         int cnt = 0;
-        for (String s : hashMap.keySet()) {
-            if (hashMap.get(s) == 0) {
+        ArrayList<String> list = new ArrayList<>();
+
+        for (String s : hm.keySet()) {
+            if (hm.get(s) == 0) {
                 list.add(s);
                 cnt++;
             }
         }
+        sb.append(cnt).append('\n');
 
-        System.out.println(cnt);
         Collections.sort(list);
         for (String s : list) {
-            System.out.println(s);
+            sb.append(s).append('\n');
         }
+
+        System.out.print(sb);
     }
 }
