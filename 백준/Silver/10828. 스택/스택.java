@@ -1,62 +1,39 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Stack;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static int[] stack;
-    public static int size = 0;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        int N = sc.nextInt();
-        stack = new int[N];
-
+        int N = Integer.parseInt(br.readLine());
+        Stack<Integer> stack = new Stack<>();
         StringBuilder sb = new StringBuilder();
+
         for (int i = 0; i < N; i++) {
-            switch (sc.next()) {
+            String str = br.readLine();
+            StringTokenizer st = new StringTokenizer(str, " ");
+
+            switch (st.nextToken()) {
                 case "push":
-                    push(sc.nextInt());
+                    stack.push(Integer.parseInt(st.nextToken()));
                     break;
                 case "pop":
-                    sb.append(pop()).append("\n");
+                    sb.append(stack.isEmpty() ? "-1" : stack.pop()).append('\n');
                     break;
                 case "size":
-                    sb.append(size()).append("\n");
+                    sb.append(stack.size()).append('\n');
                     break;
                 case "empty":
-                    sb.append(empty()).append("\n");
+                    sb.append(stack.isEmpty() ? "1" : "0").append('\n');
                     break;
                 case "top":
-                    sb.append(top()).append("\n");
+                    sb.append(stack.isEmpty() ? "-1" : stack.peek()).append('\n');
                     break;
             }
         }
-        System.out.println(sb);
-    }
-
-    public static void push(int item) {
-        stack[size++] = item;
-    }
-
-    public static int pop() {
-        if (size == 0) {
-            return -1;
-        }
-
-        int tmp = stack[size - 1];
-        stack[size - 1] = 0;
-        size--;
-        return tmp;
-    }
-
-    public static int size() {
-        return size;
-    }
-
-    public static int empty() {
-        return size == 0 ? 1 : 0;
-    }
-
-    public static int top() {
-        return size == 0 ? -1 : stack[size - 1];
+        System.out.print(sb);
     }
 }
