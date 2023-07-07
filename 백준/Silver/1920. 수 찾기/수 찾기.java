@@ -1,21 +1,30 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int N = sc.nextInt();
+        int N = Integer.parseInt(br.readLine());
+        String str = br.readLine();
+        StringTokenizer st = new StringTokenizer(str, " ");
+
         HashMap<Integer, Integer> hm = new HashMap<>();
         for (int i = 0; i < N; i++) {
-            int num = sc.nextInt();
-            hm.put(num, hm.getOrDefault(num, 0) + 1);
+            hm.put(Integer.parseInt(st.nextToken()), 0);
         }
 
-        int M = sc.nextInt();
+        int M = Integer.parseInt(br.readLine());
+        str = br.readLine();
+        st = new StringTokenizer(str, " ");
+
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < M; i++) {
-            int num = sc.nextInt();
-            System.out.println(hm.containsKey(num) ? "1" : "0");
+            sb.append(hm.containsKey(Integer.parseInt(st.nextToken())) ? "1" : "0").append('\n');
         }
+        System.out.print(sb);
     }
 }
