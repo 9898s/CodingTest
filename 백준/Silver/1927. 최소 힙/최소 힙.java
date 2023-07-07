@@ -1,21 +1,25 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.PriorityQueue;
-import java.util.Scanner;
 
 public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        int N = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
 
-        int N = sc.nextInt();
-        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
-
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
         for (int i = 0; i < N; i++) {
-            int num = sc.nextInt();
-            if (num == 0) {
-                System.out.println(priorityQueue.isEmpty() ? "0" : priorityQueue.poll());
-            } else {
-                priorityQueue.add(num);
+            int M = Integer.parseInt(br.readLine());
+
+            if (M == 0) {
+                sb.append(pq.isEmpty() ? "0" : pq.poll()).append('\n');
+                continue;
             }
+            pq.add(M);
         }
+        System.out.print(sb);
     }
 }
