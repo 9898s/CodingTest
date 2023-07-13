@@ -1,9 +1,11 @@
 class Solution {
     public int gcd(int a, int b) {
-        if(a % b == 0) {
-            return b;
+        while (b != 0) {
+            int n = a % b;
+            a = b;
+            b = n;
         }
-        return gcd(b, a % b);
+        return a;
     }
     
     public int lcm(int a, int b) {
